@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.2.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve public",
+    "generate": "node generate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/psgc/api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/psgc/api/issues"
+  },
+  "homepage": "https://gitlab.com/psgc/api#readme",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "file-system": "^2.2.2",
+    "gzip-cli": "^1.1.1",
+    "ramda": "^0.26.1",
+    "title-case": "^3.0.2"
+  }
+}

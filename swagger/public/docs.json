@@ -1,0 +1,4380 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PSGC API",
+    "description": "Current data is as of June 30, 2022. Data is based from https://psa.gov.ph/classification/psgc/ (Publication file).<br/><br/>Limitation: The content-type header of the API is text/html instead of application/json. Use API JSON call if content-type header application/json is needed<br/><br/>Issues/request/suggestions: Kindly file your concern here <a href='https://gitlab.com/psgc/api/issues' target='_blank'>https://gitlab.com/psgc/api/issues</a>",
+    "version": "1.2.4"
+  },
+  "servers": [
+    {
+      "url": "https://psgc.gitlab.io/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "API",
+      "description": "pretty url call"
+    },
+    {
+      "name": "API JSON",
+      "description": "alternative call"
+    }
+  ],
+  "paths": {
+    "/island-groups/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IslandGroup"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/IslandGroup"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/regions/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/provinces/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/districts/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/District"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/cities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/cities-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/sub-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/provinces/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "010000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/districts/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/District"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/cities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/cities-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/sub-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/Province"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/cities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/cities-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/sub-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/District"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/District"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/cities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/cities-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/sub-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities/{municipalityCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "municipalityCode",
+            "in": "path",
+            "description": "municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012801000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/Municipality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities/{municipalityCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "municipalityCode",
+            "in": "path",
+            "description": "municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012801000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sub-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sub-municipalities/{subMunicipalityCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "subMunicipalityCode",
+            "in": "path",
+            "description": "sub-municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133901000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubMunicipality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sub-municipalities/{subMunicipalityCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "subMunicipalityCode",
+            "in": "path",
+            "description": "sub-municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133901000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities/{cityCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "city code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities/{cityCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "city code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities-municipalities/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities-municipalities/{cityOrMunicipalityCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "cityOrMunicipalityCode",
+            "in": "path",
+            "description": "city or municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityMunicipality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities-municipalities/{cityOrMunicipalityCode}/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "cityOrMunicipalityCode",
+            "in": "path",
+            "description": "city or municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/barangays/": {
+      "get": {
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/barangays/{barangayCode}/": {
+      "get": {
+        "tags": ["API"],
+        "parameters": [
+          {
+            "name": "barangayCode",
+            "in": "path",
+            "description": "barangay code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/Barangay"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IslandGroup"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "$ref": "#/components/schemas/IslandGroup"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/regions.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/provinces.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/districts.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/District"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/cities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/cities-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/sub-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/island-groups/{islandGroupCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "islandGroupCode",
+            "in": "path",
+            "description": "island group code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "luzon"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Region"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Region"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/provinces.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "010000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/districts.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/District"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/cities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/cities-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/sub-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/regions/{regionCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "regionCode",
+            "in": "path",
+            "description": "region code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "130000000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Province"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Province"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/cities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/cities-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/sub-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provinces/{provinceCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "provinceCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012800000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/District"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "province code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/District"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/cities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/cities-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/sub-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/districts/{districtCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "districtCode",
+            "in": "path",
+            "description": "district code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133900000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Municipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities/{municipalityCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "municipalityCode",
+            "in": "path",
+            "description": "municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012801000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Municipality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipalities/{municipalityCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "municipalityCode",
+            "in": "path",
+            "description": "municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012801000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sub-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sub-municipalities/{subMunicipalityCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "subMunicipalityCode",
+            "in": "path",
+            "description": "sub-municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133901000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubMunicipality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sub-municipalities/{subMunicipalityCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "subMunicipalityCode",
+            "in": "path",
+            "description": "sub-municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "133901000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities/{cityCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "city code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities/{cityCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "cityCode",
+            "in": "path",
+            "description": "city code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities-municipalities.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CityMunicipality"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities-municipalities/{cityOrMunicipalityCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "cityOrMunicipalityCode",
+            "in": "path",
+            "description": "city or municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityMunicipality"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cities-municipalities/{cityOrMunicipalityCode}/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "cityOrMunicipalityCode",
+            "in": "path",
+            "description": "city or municipality code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805000"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/barangays.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Barangay"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/barangays/{barangayCode}.json": {
+      "get": {
+        "tags": ["API JSON"],
+        "summary": "json content type",
+        "parameters": [
+          {
+            "name": "barangayCode",
+            "in": "path",
+            "description": "barangay code",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "012805001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Barangay"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "page not found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IslandGroup": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "luzon"
+          },
+          "name": {
+            "type": "string",
+            "example": "Luzon"
+          }
+        }
+      },
+      "Region": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "130000000"
+          },
+          "name": {
+            "type": "string",
+            "example": "NCR"
+          },
+          "regionName": {
+            "type": "string",
+            "example": "National Capital Region"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "luzon"
+          }
+        }
+      },
+      "Province": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "012800000"
+          },
+          "name": {
+            "type": "string",
+            "example": "Ilocos Norte"
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "010000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "luzon"
+          }
+        }
+      },
+      "District": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "133900000"
+          },
+          "name": {
+            "type": "string",
+            "example": "First District"
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "130000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "luzon"
+          }
+        }
+      },
+      "Municipality": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "013306000"
+          },
+          "name": {
+            "type": "string",
+            "example": "Bangar"
+          },
+          "oldName": {
+            "type": "string",
+            "example": "Espiritu"
+          },
+          "isCapital": {
+            "type": "boolean",
+            "example": true
+          },
+          "districtCode": {
+            "example": "013300000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "013300000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "provinceCode": {
+            "example": "013300000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "013300000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "010000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "luzon"
+          }
+        }
+      },
+      "SubMunicipality": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "133911000"
+          },
+          "name": {
+            "type": "string",
+            "example": "Paco"
+          },
+          "oldName": {
+            "type": "string",
+            "example": ""
+          },
+          "districtCode": {
+            "example": "133900000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "133900000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "provinceCode": {
+            "example": "133900000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "133900000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "130000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "luzon"
+          }
+        }
+      },
+      "City": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "072217000"
+          },
+          "name": {
+            "type": "string",
+            "example": "City of Cebu"
+          },
+          "oldName": {
+            "type": "string",
+            "example": ""
+          },
+          "isCapital": {
+            "type": "boolean",
+            "example": true
+          },
+          "districtCode": {
+            "example": "072200000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "072200000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "provinceCode": {
+            "example": "072200000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "072200000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "070000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "visayas"
+          }
+        }
+      },
+      "CityMunicipality": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "072217000"
+          },
+          "name": {
+            "type": "string",
+            "example": "City of Cebu"
+          },
+          "oldName": {
+            "type": "string",
+            "example": "Espiritu"
+          },
+          "isCapital": {
+            "type": "boolean",
+            "example": true
+          },
+          "isCity": {
+            "type": "boolean",
+            "example": false
+          },
+          "isMunicipality": {
+            "type": "boolean",
+            "example": true
+          },
+          "districtCode": {
+            "example": "072200000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "072200000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "provinceCode": {
+            "example": "072200000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "072200000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "070000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "visayas"
+          }
+        }
+      },
+      "Barangay": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "012805002"
+          },
+          "name": {
+            "type": "string",
+            "example": "Baay"
+          },
+          "oldName": {
+            "type": "string",
+            "example": "Caoayan"
+          },
+          "subMunicipalityCode": {
+            "example": "012805000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "012805000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "cityCode": {
+            "example": "012805000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "012805000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "municipalityCode": {
+            "example": "012805000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "012805000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "districtCode": {
+            "example": "012805000",
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "012805000"
+              },
+              {
+                "type": "boolean",
+                "example": false
+              }
+            ]
+          },
+          "provinceCode": {
+            "type": "string",
+            "example": "012800000"
+          },
+          "regionCode": {
+            "type": "string",
+            "example": "010000000"
+          },
+          "islandGroupCode": {
+            "type": "string",
+            "example": "luzon"
+          }
+        }
+      }
+    }
+  }
+}
